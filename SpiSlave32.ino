@@ -34,7 +34,7 @@
 	SPI data :
 
 	1 SPI frame = 8 pages
-	1 page = 128 pixels
+	1 page = 8lines/128 pixels
 	1 page : 3 command bytes + 128 bytes (= 8 lines on the display)
 	1 command byte = 0x10 0x00 0XBn , n = page # (0...7)
 	total : 8 pages ; 8 * 131 = 1048 bytes, CLK @ 1MHz
@@ -82,7 +82,7 @@ void rxDMAirq(void)
 }
 
 // decoding function : copy SPI buffer to bitmap, removes the command bytes
-// 30µs (vs 480µs with the previous one)
+// 30Âµs (vs 480Âµs with the previous one)
 bool rebuildBitmap()
 {
 	for (int i = 0; i < GFX_PAGE_COUNT; i++)
